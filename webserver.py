@@ -19,9 +19,11 @@ def nicify(j):
     for p in j["data"]:
         tm = p["attributes"]["arrival_time"]
         hs = h[p["relationships"]["trip"]["data"]["id"]]
-        r[hs].append(int(tm[14:16]) * 60 + int(tm[17:19]))
-    print(r)
-    return json.dumps(r)
+        
+    #    r[hs].append(int(tm[14:16]) * 60 + int(tm[17:19]))
+    #print(r)
+    #return json.dumps(r)
+    return json.dumps(hs)
 @app.route('/')
 def display():
     contents = urllib.request.urlopen(url).read()
