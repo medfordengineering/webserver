@@ -1,4 +1,5 @@
-import urllib, json, time
+#import urllib, json, time
+import urllib.request, json, time
 from pytz import timezone
 from datetime import datetime
 from dateutil import parser
@@ -21,14 +22,16 @@ def time_diff(c_time):
 
 #get JSON data
 url = "https://api-v3.mbta.com/predictions?filter[stop]=9147&filter[route]=134&include=stop,trip"
-response = urllib.urlopen(url)
-data = json.loads(response.read())
+#response = urllib.urlopen(url)
+response = urllib.request.urlopen(url).read()
+#data = json.loads(response.read())
+data = json.loads(response.decode('utf-8'))
 
 #parse arrival time from JSON
 temp_time = data['data'][0]['attributes']['departure_time']
 
 temp_diff = time_diff(temp_time)
-print temp_diff
+print (temp_diff)
 
 """
 print (
