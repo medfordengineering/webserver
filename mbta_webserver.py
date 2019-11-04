@@ -34,6 +34,8 @@ def get_arrival(data):
     for e in data['data']:
         a_time = data['data'][x]['attributes']['departure_time']
         elapse_time = round(time_diff(a_time))
+        #THIS IS A HACK TO DEAL WITH DAYLIGHT SAVINGS TIME
+        #elapse_time = elapse_time - 60;
         trip_id = data['data'][x]['relationships']['trip']['data']['id']
         times.append({'id':trip_id, 'time':elapse_time})
         x = x + 1
